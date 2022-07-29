@@ -8,7 +8,6 @@ import { ImgComponent } from './components/img/img.component';
 import { ProductComponent } from './components/product/product.component';
 import { ProductsComponent } from './components/products/products.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

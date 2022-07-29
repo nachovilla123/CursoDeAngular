@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Product } from '../../models/product.model';
 
 @Component({
@@ -7,8 +8,6 @@ import { Product } from '../../models/product.model';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-
-  constructor() { }
 
   products: Product[] = [
     {
@@ -36,6 +35,8 @@ export class ProductsComponent implements OnInit {
       image: './assets/images/books.jpg'
     },
   ];
+
+  constructor() { }
 
   ngOnInit(): void {
   }

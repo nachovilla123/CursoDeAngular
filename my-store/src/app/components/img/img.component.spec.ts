@@ -11,7 +11,9 @@ describe('ImgComponent', () => {
       declarations: [ ImgComponent ]
     })
     .compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(ImgComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

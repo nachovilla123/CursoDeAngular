@@ -1,63 +1,70 @@
-import { Component, OnInit , Input , Output, EventEmitter , OnChanges, AfterViewInit ,OnDestroy} from '@angular/core';
-// para comunicar al padre Output y EventEmitter
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, AfterViewInit, OnDestroy, SimpleChanges } from '@angular/core';
+
 @Component({
   selector: 'app-img',
   templateUrl: './img.component.html',
   styleUrls: ['./img.component.scss']
 })
-export class ImgComponent implements OnInit,OnChanges,AfterViewInit ,OnDestroy{
+export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
 
-@Input() img : String = 'valor init'
-@Output() loaded = new EventEmitter<String>();
+  img: string = '';
 
-counter = 0;
-counterFng: number | undefined;
-
-
-imageDefault = './assets/images/default.png'
+  @Input('img')
+  set changeImg(newImg: string) {
+    this.img = newImg;
+    console.log('change just img  =>' ,this.img);
+    // code
+  }
+  @Input() alt: string = '';
+  @Output() loaded = new EventEmitter<string>();
+  imageDefault = './assets/images/default.png';
+  // counter = 0;
+  // counterFn: number | undefined;
 
   constructor() {
-    //before render   async -- once time
+    // before render
+    // NO async -- once time
+    console.log('constructor', 'imgValue =>', this.img);
+  }
 
-    console.log('constructor' , 'imgValue =>',this.img);
-   }
-
-
-   ngOnChanges(){
-  //before render  actualiza los cambios en inputs , corre muchas veces. --during render
-  console.log('ngOnChanges' , 'imgValue =>',this.img);
-
-   }
+  ngOnChanges(changes: SimpleChanges) {
+    // before - during render
+    // changes inputs -- multiples times
+    console.log('ngOnChanges', 'imgValue =>', this.img);
+    console.log('changes', changes);
+    // if (changes.) {
+    //   // code
+    // }
+  }
 
   ngOnInit(): void {
     // before render
-    // async fetch llamadas a api(x tiempo respuesta servidor)  -- corre una sola vez
-    console.log('ngOnInit' , 'imgValue =>',this.img);
-
-   this.counterFng = window.setInterval( () =>{
-      this.counter += 1;
-      console.log('run counter' );
-    },1000 );
+    // async - fetch -- once time
+    console.log('ngOnInit', 'imgValue =>', this.img);
+    // this.counterFn = window.setInterval(() => {
+    //   this.counter += 1;
+    //   console.log('run counter');
+    // }, 1000);
   }
 
-  ngAfterViewInit(){
-      // after  render
-      // handler children
-      console.log('ngAgterViewInit' );
+  ngAfterViewInit() {
+    // after render
+    // handler children -- once time
+    console.log('ngAfterViewInit');
   }
 
-  ngOnDestroy(){
-      // delete
-      console.log('ngOnDestroy' );
-    window.clearInterval(this.counterFng) // manera correcta de limpiar el proceso y q no siga para simepre
+  ngOnDestroy() {
+    // delete -- once time
+    console.log('ngOnDestroy');
+    // window.clearInterval(this.counterFn);
   }
 
-  imgError(){
+  imgError() {
     this.img = this.imageDefault;
   }
 
-  imgLoaded(){
-    console.log('log hijo ')
+  imgLoaded() {
+    console.log('log hijo');
     this.loaded.emit(this.img);
   }
 
