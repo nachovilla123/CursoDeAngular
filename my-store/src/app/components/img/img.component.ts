@@ -10,6 +10,10 @@ export class ImgComponent implements OnInit,OnChanges,AfterViewInit ,OnDestroy{
 @Input() img : String = 'valor init'
 @Output() loaded = new EventEmitter<String>();
 
+counter = 0;
+counterFng: number | undefined;
+
+
 imageDefault = './assets/images/default.png'
 
   constructor() {
@@ -29,6 +33,11 @@ imageDefault = './assets/images/default.png'
     // before render
     // async fetch llamadas a api(x tiempo respuesta servidor)  -- corre una sola vez
     console.log('ngOnInit' , 'imgValue =>',this.img);
+
+   this.counterFng = window.setInterval( () =>{
+      this.counter += 1;
+      console.log('run counter' );
+    },1000 );
   }
 
   ngAfterViewInit(){
@@ -40,7 +49,7 @@ imageDefault = './assets/images/default.png'
   ngOnDestroy(){
       // delete
       console.log('ngOnDestroy' );
-
+    window.clearInterval(this.counterFng) // manera correcta de limpiar el proceso y q no siga para simepre
   }
 
   imgError(){
