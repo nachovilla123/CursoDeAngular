@@ -3,4 +3,8 @@
 <p><input type="text" [(ngModel)] = "imgParent"></p>
 
 <!--<app-img img = "este valor viene desde el padre"></app-img> -->
-<app-img [img] = "imgParent"></app-img> <!-- envio dinamicamente-->
+<app-img (loaded)="onLoaded($event)" [img] = "imgParent"></app-img> <!-- envio dinamicamente-->
+
+
+
+
