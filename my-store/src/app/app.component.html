@@ -5,6 +5,7 @@
 <!--<app-img img = "este valor viene desde el padre"></app-img> -->
 <app-img (loaded)="onLoaded($event)" [img] = "imgParent"></app-img> <!-- envio dinamicamente-->
 
+<app-product [product]="product" *ngFor="let product of products"></app-product>
 
 
 
