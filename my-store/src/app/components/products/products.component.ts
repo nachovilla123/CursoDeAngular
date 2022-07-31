@@ -15,6 +15,9 @@ export class ProductsComponent implements OnInit {
   myShoppingCart: Product[] = [];
   total = 0;
   products: Product[] = [];
+  today = new Date();
+  date = new Date(2020,10,10);
+
 
   constructor(
     private storeService: StoreService, // esto es una inyeccion de dependencias

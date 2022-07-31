@@ -7,6 +7,9 @@
   total: ${{total}}
 </p>
 
+<p>{{today | date : 'short'}}</p>
+<p>{{today | timeAgo}}</p>
+
 <div class="products--grid">
   <app-product
     [product]="product"
