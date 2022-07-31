@@ -45,15 +45,17 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private storeService: StoreService // esto es una inyeccion de dependencias
-  ) { }
+  ) {
+
+      this.myShoppingCart = this.storeService.getMyShoppingCart();
+
+    }
 
   ngOnInit(): void {
   }
 
-  onAddToShoppingCart(product: Product){
-
+  onAddToShoppingCart(product: Product){ // la logica sigue igual solo que se delega a un servicio
     this.storeService.addProduct(product);
-    this.storeService.getTotal();
-    this.total = this.myShoppingCart.reduce((sum,item)=> sum + item.price,0 );
+    this.total = this.storeService.getTotal();
   }
 }

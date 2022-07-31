@@ -10,7 +10,7 @@ import { Product } from '../models/product.model';
 export class StoreService {
 
 
-  myShoppingCart: Product[] = [];
+ private myShoppingCart: Product[] = [];
 
 
 
@@ -20,6 +20,10 @@ export class StoreService {
 
   addProduct(product : Product){
     this.myShoppingCart.push(product);
+  }
+
+  getMyShoppingCart(){
+    return this.myShoppingCart;
   }
 
   getTotal(){
