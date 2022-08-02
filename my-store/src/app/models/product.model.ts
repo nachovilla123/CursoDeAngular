@@ -13,6 +13,10 @@ export interface Product {
 }
 
 export interface CreateProductDTO extends Omit<Product , 'id' | 'category'> {
-
   categoryId: number;
 }
+
+export interface UpdateProductDTO extends Partial<CreateProductDTO>{ // partial me habilita el x? a todos los campos
+
+}
+
