@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient , HttpParams,HttpErrorResponse,HttpStatusCode} from '@angular/common/http';
-import { retry, catchError ,map } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { HttpClient, HttpParams, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { retry, catchError, map } from 'rxjs/operators';
+import { throwError, zip } from 'rxjs';
 
-import { UpdateProductDTO ,CreateProductDTO, Product } from './../models/product.model';
-import {environment} from './../../environments/environment'
+import { Product, CreateProductDTO, UpdateProductDTO } from './../models/product.model';
+
+import { environment } from './../../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -31,6 +33,13 @@ export class ProductsService {
           taxes: .19 * item.price
         }
       }))
+    );
+  }
+
+  fetchReadAndUpdate(id: string, dto: UpdateProductDTO) {
+    return zip(
+      this.getProduct(id),
+      this.update(id, dto)
     );
   }
 
