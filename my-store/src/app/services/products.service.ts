@@ -22,11 +22,17 @@ export class ProductsService {
     return this.http.get<Product>(`${this.apiUrl}/${id}`)
   }
 
+  
+
   create(dto : CreateProductDTO){ // data transfer offer
     return this.http.post<Product>(this.apiUrl,dto);
   }
 
   update(id: string, dto: UpdateProductDTO) {
     return this.http.put<Product>(`${this.apiUrl}/${id}`, dto);
+  }
+
+  delete(id: string) {
+    return this.http.delete<boolean>(`${this.apiUrl}/${id}`);
   }
 }
