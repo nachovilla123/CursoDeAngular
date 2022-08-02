@@ -15,8 +15,8 @@ export class ProductsService {
   private apiUrl = `${environment.API_URL}/api/products`;
 
   constructor(
-    private http : HttpClient
-  ) {}
+    private http: HttpClient
+  ) { }
 
   getAllProducts(limit?: number, offset?: number) {
     let params = new HttpParams();
@@ -26,7 +26,7 @@ export class ProductsService {
     }
     return this.http.get<Product[]>(this.apiUrl, { params })
     .pipe(
-      retry(3), // observer
+      retry(3),
       map(products => products.map(item => {
         return {
           ...item,
@@ -61,14 +61,14 @@ export class ProductsService {
     )
   }
 
-  getProductByPage(limit : number,offset : number){
-    return this.http.get<Product[]>(`${this.apiUrl}`,{
-      params: {limit,offset}
-    });
+  getProductsByPage(limit: number, offset: number) {
+    return this.http.get<Product[]>(`${this.apiUrl}`, {
+      params: { limit, offset }
+    })
   }
 
-  create(dto : CreateProductDTO){ // data transfer offer
-    return this.http.post<Product>(this.apiUrl,dto);
+  create(dto: CreateProductDTO) {
+    return this.http.post<Product>(this.apiUrl, dto);
   }
 
   update(id: string, dto: UpdateProductDTO) {
