@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { UsersService } from './services/users.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ export class AppComponent {
   token = '';
 
   constructor(
-    private usersService: UsersService
+    private usersService: UsersService,
+    private authService: AuthService
   ) {
 
   }
@@ -29,12 +31,19 @@ export class AppComponent {
 
   createUser() {
     this.usersService.create({
-      name: 'Sebas',
-      email: 'sebas@mail.com',
+      name: 'Nacho',
+      email: 'nacho@mail.com',
       password: '1212'
     })
     .subscribe(rta => {
       console.log(rta);
     });
   }
+
+  login(){ this.authService.login('nacho@mail.com','1212')
+    .subscribe(rta => {
+      console.log(rta.access_token);
+    });
+  }
+
 }
